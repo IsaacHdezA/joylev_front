@@ -6,14 +6,14 @@
 		</header>
 
 		<form class="flex flex-col gap-2">
-			<p-inputGroup>
+			<p-inputGroup class="border rounded-xl overflow-hidden">
 				<p-inputGroupAddon>
 					<fa-icon [icon]="atIcon"></fa-icon>
 				</p-inputGroupAddon>
 				<input class="px-5" placeholder="Correo electrónico o nombre de usuario">
 			</p-inputGroup>
 
-			<p-inputGroup>
+			<p-inputGroup class="border rounded-xl overflow-hidden">
 				<p-inputGroupAddon>
 					<fa-icon [icon]="keyIcon"></fa-icon>
 				</p-inputGroupAddon>
@@ -22,9 +22,9 @@
 
 			<button (click)="toggleRegister()" class="text-blue-600 cursor-pointer visited:txt-blue visited:text-purple-600 text-end underline">¿No tienes cuenta? ¡Regístrate!</button>
 
-			<button class="flex justify-center items-center bg-blue-500 hover:bg-blue-700 text-white py-2 rounded gap-2">
+			<button class="flex justify-center items-center bg-blue-500 hover:bg-blue-700 text-white py-2 rounded-xl gap-2">
 				<fa-icon [icon]="unlockIcon"></fa-icon>
-				Siguiente
+				Iniciar sesión
 			</button>
 		</form>
   </div>
@@ -38,35 +38,35 @@
 		</header>
 
 		<form class="flex flex-col gap-3">
-			<p-inputGroup>
+			<p-inputGroup class="border rounded-xl overflow-hidden">
 				<p-inputGroupAddon>
 					<fa-icon [icon]="atIcon"></fa-icon>
 				</p-inputGroupAddon>
 				<input type="email" class="px-5" placeholder="Correo electrónico">
 			</p-inputGroup>
 
-			<p-inputGroup>
+			<p-inputGroup class="border rounded-xl overflow-hidden">
 				<p-inputGroupAddon>
 					<fa-icon [icon]="userIcon"></fa-icon>
 				</p-inputGroupAddon>
 				<input class="px-5" type="password" placeholder="Nombre de usuario">
 			</p-inputGroup>
 
-			<p-inputGroup>
+			<p-inputGroup class="border rounded-xl overflow-hidden">
 				<p-inputGroupAddon>
 					<fa-icon [icon]="keyIcon"></fa-icon>
 				</p-inputGroupAddon>
 				<input class="px-5" type="password" placeholder="Contraseña">
 			</p-inputGroup>
 
-			<p-inputGroup>
+			<p-inputGroup class="border rounded-xl overflow-hidden">
 				<p-inputGroupAddon>
 					<fa-icon [icon]="repeatIcon"></fa-icon>
 				</p-inputGroupAddon>
 				<input class="px-5" type="password" placeholder="Repetir contraseña">
 			</p-inputGroup>
 
-			<button class="flex justify-center items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded gap-2">
+			<button class="flex justify-center items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded-xl gap-2">
 				<fa-icon [icon]="logIcon"></fa-icon>
 				Registrarse
 			</button>
