@@ -16,19 +16,8 @@
     <div class="col-span-4">
       <h3 class="text-xl">¿Cuándo pasó?</h3>
       <div class="flex gap-2">
-        <div class="flex w-full border rounded-xl overflow-hidden focus-within:border-black">
-          <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
-            <fa-icon [icon]="calendarIcon"></fa-icon>
-          </div>
-          <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Inicio">
-        </div>
-
-        <div class="flex w-full border rounded-xl overflow-hidden focus-within:border-black">
-          <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Fin">
-          <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
-            <fa-icon [icon]="calendarCheckIcon"></fa-icon>
-          </div>
-        </div>
+        <date-picker placeholder="Inicio de actividad" [(ngModel)]="startDate"></date-picker>
+        <date-picker placeholder="Fin de actividad"    [(ngModel)]="endDate"></date-picker>
       </div>
     </div>
 
@@ -123,7 +112,10 @@
       </div>
 
       <div>
-        <button class="w-full p-3 flex justify-center align-middle rounded-xl focus-within:border-black bg-blue-400 gap-2 text-white" placeholder="Email o nombre de usuario">
+        <button
+          (click)="onSubmit()"
+          class="w-full p-3 flex justify-center align-middle rounded-xl focus-within:border-black bg-blue-400 gap-2 text-white" placeholder="Email o nombre de usuario"
+        >
           <fa-icon [icon]="activityIcon"></fa-icon>
           Agregar actividad
         </button>
