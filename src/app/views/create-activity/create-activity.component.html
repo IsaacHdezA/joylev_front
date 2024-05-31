@@ -1,0 +1,133 @@
+<div class="w-screen h-screen p-3">
+  <header>
+    <h1 class="text-3xl">Crea una actividad</h1>
+  </header>
+  <main class="grid grid-cols-12 gap-2 p-2">
+    <div class="col-span-5">
+      <h3 class="text-xl">¿Qué estuviste haciendo?</h3>
+      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+        <div class="flex justify-center items-center w-12 h-100 text-gray-400">
+          <fa-icon [icon]="activityIcon"></fa-icon>
+        </div>
+        <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+      </div>
+    </div>
+
+    <div class="col-span-4">
+      <h3 class="text-xl">¿Cuándo pasó?</h3>
+      <div class="flex gap-2">
+        <div class="flex w-full border rounded-xl overflow-hidden focus-within:border-black">
+          <div class="flex justify-center items-center w-12 h-100 text-gray-400">
+            <fa-icon [icon]="calendarIcon"></fa-icon>
+          </div>
+          <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Inicio">
+        </div>
+
+        <div class="flex w-full border rounded-xl overflow-hidden focus-within:border-black">
+          <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Fin">
+          <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+            <fa-icon [icon]="calendarCheckIcon"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-3">
+      <h3 class="text-xl">¿Quién se va a enterar?</h3>
+      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+          <fa-icon [icon]="activityIcon"></fa-icon>
+        </div>
+        <select class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+          <option>Público</option>
+          <option>Oculto</option>
+          <option>Sida</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-span-4">
+      <h3 class="text-xl">¿Cuánto placer sentiste?</h3>
+      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+          <fa-icon [icon]="activityIcon"></fa-icon>
+        </div>
+        <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+      </div>
+    </div>
+
+    <div class="col-span-4">
+      <h3 class="text-xl">¿Cuánto te costó lograrlo?</h3>
+      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+          <fa-icon [icon]="activityIcon"></fa-icon>
+        </div>
+        <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+      </div>
+    </div>
+
+    <div class="col-span-4">
+      <h3 class="text-xl">¿Qué emociones puedes identificar?</h3>
+      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+          <fa-icon [icon]="activityIcon"></fa-icon>
+        </div>
+        <select class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+          <option>Felicidad</option>
+          <option>Tristeza</option>
+          <option>Enojo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-span-8 flex flex-col">
+      <h3 class="text-xl">¿Tienes algo más que decir?</h3>
+      <div class="flex flex-grow border rounded-xl overflow-hidden focus-within:border-black">
+        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+          <fa-icon [icon]="activityIcon"></fa-icon>
+        </div>
+        <textarea class="w-full flex-grow overflow-auto pl-3 py-2 pr-2 outline-none" placeholder="Ramiro"></textarea>
+      </div>
+    </div>
+
+    <div class="h-fit col-span-4 flex flex-col gap-2 justify-between">
+      <div class="flex flex-col gap-2">
+        <div>
+          <h3 class="text-xl">¿Quieres mostrar algo?</h3>
+          <div class="flex overflow-x-auto gap-2 py-2">
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
+            <div class="min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 p-1 cursor-pointer text-gray-400">
+              <div class="w-full h-full border border-dashed border-gray-400 flex justify-center items-center rounded-xl">
+                <fa-icon [icon]="activityIcon"></fa-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl">¿Dónde pasó todo?</h3>
+          <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+						<iframe class="w-full" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=736&amp;height=415&amp;hl=en&amp;q=%20Le%C3%B3n+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+						</iframe>
+						<script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=da92064175b8381ca6de79f9181f6cfb1af2d7e0'>
+						</script>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="w-full p-3 flex justify-center align-middle rounded-xl focus-within:border-black bg-blue-400 gap-2 text-white" placeholder="Email o nombre de usuario">
+          <fa-icon [icon]="activityIcon"></fa-icon>
+          Agregar actividad
+        </button>
+      </div>
+    </div>
+  </main>
+</div>
