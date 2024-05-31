@@ -1,0 +1,75 @@
+<div class="flex h-screen justify-center items-center">
+@if(!register) {
+  <div class="flex flex-col bg-white border-2 rounded p-10 w-96 gap-4 rounded-xl">
+		<header>
+			<h1 class="text-3xl">Inicia sesión</h1>
+		</header>
+
+		<form class="flex flex-col gap-2">
+			<div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+				<div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+					<fa-icon [icon]="atIcon"></fa-icon>
+				</div>
+				<input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+			</div>
+			<div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+				<div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+					<fa-icon [icon]="keyIcon"></fa-icon>
+				</div>
+				<input type="password" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Contraseña">
+			</div>
+
+			<button (click)="toggleRegister()" class="text-blue-600 cursor-pointer visited:txt-blue visited:text-purple-600 text-end underline">¿No tienes cuenta? ¡Regístrate!</button>
+
+			<button class="flex justify-center items-center bg-blue-500 hover:bg-blue-700 text-white py-2 rounded-xl gap-2">
+				<fa-icon [icon]="unlockIcon"></fa-icon>
+				Iniciar sesión
+			</button>
+		</form>
+  </div>
+} @else {
+  <div class="flex flex-col bg-white border-2 p-10 w-96 rounded-xl gap-3">
+		<header class="flex flex-row items-center gap-2">
+			<button class="rounded-full py-1 px-2 hover:bg-gray-100" (click)="toggleRegister()">
+				<fa-icon [icon]="arrowLeftIcon"></fa-icon>
+			</button>
+			<h1 class="text-3xl">Crea una cuenta</h1>
+		</header>
+
+		<form class="flex flex-col gap-2">
+			<div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+				<div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+					<fa-icon [icon]="atIcon"></fa-icon>
+				</div>
+				<input type="email" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email">
+			</div>
+
+			<div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+				<div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+					<fa-icon [icon]="userIcon"></fa-icon>
+				</div>
+				<input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Nombre de usuario">
+			</div>
+
+			<div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+				<div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+					<fa-icon [icon]="keyIcon"></fa-icon>
+				</div>
+				<input type="password" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Contraseña">
+			</div>
+
+			<div class="flex border rounded-xl overflow-hidden focus-within:border-black">
+				<div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
+					<fa-icon [icon]="repeatIcon"></fa-icon>
+				</div>
+				<input type="password" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Contraseña">
+			</div>
+
+			<button class="flex justify-center items-center bg-blue-500 hover:bg-blue-700 text-white py-2 rounded-xl gap-2">
+				<fa-icon [icon]="logIcon"></fa-icon>
+				Registrarse
+			</button>
+		</form>
+  </div>
+}
+</div>

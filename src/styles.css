@@ -1,7 +1,5 @@
 @tailwind components;
 @tailwind utilities;
-
-@layer tailwind-base, tailwind-utilities;
         
 @layer tailwind-base {
     @tailwind base;
