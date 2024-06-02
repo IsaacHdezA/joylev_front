@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 import { DatePickerComponent } from '../../components/date-picker/date-picker.component';
+import { DropdownListComponent } from '../../components/dropdown-list/dropdown-list.component';
 
 // FontAwesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,6 +13,9 @@ import {
   faCalendar,
   faCalendarCheck,
   faTrash,
+  faCaretDown,
+  faGlobe,
+  faEye
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -20,6 +24,7 @@ import {
   imports: [
     FontAwesomeModule,
     DatePickerComponent,
+    DropdownListComponent,
     NgClass
   ],
   templateUrl: './create-activity.component.html',
@@ -33,6 +38,12 @@ export class CreateActivityComponent implements OnInit {
 
   startDate!: Date;
   endDate!: Date;
+
+  privacyOptions: string[] = [
+    "Público",
+    "Privado",
+    "Amigos",
+  ];
 
   cat_tags: string[] = [
     "multicolored", "multiple", "multiple_colors", "munchkin", "müde", "nader", "nails", "nasty",

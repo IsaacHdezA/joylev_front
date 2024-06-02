@@ -1,10 +1,11 @@
+<!-- TODO: Create Esc KeyPress directive to close options when pressing -->
 <div
   class="container"
   clickedOutside
   (atOutsideClick)="closePicker()"
 >
   <div class="relative">
-    <div class="flex w-full border rounded-xl focus-within:border-black overflow-hidden">
+    <div class="flex h-11 w-full border rounded-xl focus-within:border-black overflow-hidden">
       <div class="flex justify-center items-center min-w-12 min-h-100 bg-slate-200 text-gray-400">
         <fa-icon [icon]="calendarIcon"></fa-icon>
       </div>
@@ -12,7 +13,7 @@
       <input
         type="text"
         readonly
-        class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+        class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none focus:shadow-outline"
         [required]="required"
         [placeholder]="placeholder"
         [(ngModel)]="parsedDate"
@@ -21,7 +22,7 @@
     </div>
 
     @if(showDatepicker) {
-      <div class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0 z-10" style="width: 17rem">
+      <div class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0 z-10 w-full">
         <div class="flex justify-between items-center mb-2">
           <button
             type="button"
