@@ -84,20 +84,23 @@
         <div>
           <h3 class="text-xl">¿Quieres mostrar algo?</h3>
           <div class="flex overflow-x-auto gap-2 py-2">
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 rounded-xl bg-gray-200"></div>
-            <div class="min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 p-1 cursor-pointer text-gray-400">
+            <div class="min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 p-1 cursor-pointer text-gray-400 hover:cursor-pointer">
               <div class="w-full h-full border border-dashed border-gray-400 flex justify-center items-center rounded-xl">
                 <fa-icon [icon]="activityIcon"></fa-icon>
               </div>
             </div>
+
+            @for(url of urls; track $index) {
+              <div class="relative min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 cursor-pointer text-gray-400">
+                <div class="opacity-0 hover:opacity-100 transition ease-in duration-100 absolute inset-0 bg-cover bg-center z-0 bg-black bg-opacity-25 text-gray-200 w-full h-full flex justify-center items-center rounded-xl">
+                  <fa-icon [icon]="trashIcon"></fa-icon>
+                </div>
+                <div class="w-full h-full flex justify-center items-center rounded-xl bg-[url('{{ url }}')] bg-cover bg-center">
+                </div>
+              </div>
+            }
+
+
           </div>
         </div>
         <div>

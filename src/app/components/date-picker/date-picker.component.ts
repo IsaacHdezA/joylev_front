@@ -7,7 +7,9 @@ import { ClickedOutsideDirective } from '../../directives/clicked-outside.direct
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   IconDefinition, 
-  faCalendar
+  faCalendar,
+  faChevronLeft,
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -27,16 +29,21 @@ import {
 })
 export class DatePickerComponent implements OnInit {
   @Input() placeholder: string = "";
+  @Input() required: boolean = false;
+
   @Input() ngModel!: Date;
   @Output() ngModelChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   calendarIcon: IconDefinition = faCalendar;
+  prevIcon: IconDefinition = faChevronLeft;
+  nextIcon: IconDefinition = faChevronRight;
 
   MONTH_NAMES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agusto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   DAYS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
   showDatepicker: boolean = false;
   selectedDate!: Date;
+
   parsedDate!: string;
   month: number = -1;
   year: number = -1;
@@ -52,7 +59,6 @@ export class DatePickerComponent implements OnInit {
     let today = new Date();
     this.month = today.getMonth();
     this.year = today.getFullYear();
-    this.selectedDate = new Date(this.year, this.month, today.getDate());
 
     this.getNoOfDays()
   }
@@ -61,12 +67,17 @@ export class DatePickerComponent implements OnInit {
     const today = new Date();
     const d = new Date(this.year, this.month, date);
 
-    return today.toDateString() === d.toDateString() ? true : false;
+    return today.toDateString() === d.toDateString();
+  }
+
+  isDateSelected(date: number) {
+    const d = new Date(this.year, this.month, date);
+
+    return this.ngModel.toDateString() === d.toDateString();
   }
 
   getDateValue(date: number) {
     let selectedDate = new Date(this.year, this.month, date);
-    this.selectedDate = selectedDate;
 
     this.ngModelChange.emit(selectedDate);
     this.parseDate(selectedDate);
