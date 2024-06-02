@@ -26,6 +26,7 @@ import {
 export class DropdownListComponent {
   @Input() ngModel: string = "";
   @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onItemSelected: EventEmitter<string> = new EventEmitter<string>();
 
   @Input() placeholder: string = "";
   @Input() items: string[] = [];
@@ -41,6 +42,7 @@ export class DropdownListComponent {
   selectItem(item: string) {
     this.selectedItem = item;
     this.ngModelChange.emit(item);
+    this.onItemSelected.emit(item);
 
     this.showItems = false;
   }

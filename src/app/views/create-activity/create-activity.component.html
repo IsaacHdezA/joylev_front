@@ -31,35 +31,44 @@
 
     <div class="col-span-4">
       <h3 class="text-xl">¿Cuánto placer sentiste?</h3>
-      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
-        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
-          <fa-icon [icon]="activityIcon"></fa-icon>
-        </div>
-        <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+      <div class="flex justify-center">
+        <rating></rating>
       </div>
     </div>
 
     <div class="col-span-4">
       <h3 class="text-xl">¿Cuánto te costó lograrlo?</h3>
-      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
-        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
-          <fa-icon [icon]="activityIcon"></fa-icon>
-        </div>
-        <input type="text" class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
+      <div class="flex justify-center">
+        <rating></rating>
       </div>
     </div>
 
     <div class="col-span-4">
       <h3 class="text-xl">¿Qué emociones puedes identificar?</h3>
-      <div class="flex border rounded-xl overflow-hidden focus-within:border-black">
-        <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
-          <fa-icon [icon]="activityIcon"></fa-icon>
-        </div>
-        <select class="w-full pl-3 py-2 pr-2 outline-none" placeholder="Email o nombre de usuario">
-          <option>Felicidad</option>
-          <option>Tristeza</option>
-          <option>Enojo</option>
-        </select>
+      <!-- TODO: Lograr hacer que el ancho del componente sea uno fijo y no el que se establece dentro del mismo -->
+      <dropdown-list
+        class="max-w-10"
+        (onItemSelected)="selectedEmotion($event)"
+        [items]="emotionOptions"
+        placeholder="Emociones"
+      ></dropdown-list>
+      <div class="flex gap-2 py-3 overflow-x-auto user-select-none">
+        @for(emotion of emotions; track $index) {
+          <div class="flex min-w-100 justify-between gap-2 rounded-full bg-slate-200 pl-4 pr-2 py-2">
+            <div class="flex gap-2">
+              <div class="flex justify-center items-center text-gray-400">
+                <fa-icon [icon]="activityIcon"></fa-icon>
+              </div>
+              {{ emotion }}
+            </div>
+            <button
+              class="w-6 h-6 rounded-full flex justify-center items-center text-gray-400 hover:bg-slate-400 hover:text-gray-200"
+              (click)="deleteEmotion(emotion)"
+            >
+              <fa-icon [icon]="xMarkIcon"></fa-icon>
+            </button>
+          </div>
+        }
       </div>
     </div>
 
@@ -69,7 +78,7 @@
         <div class="flex justify-center items-center w-12 h-100 bg-slate-200 text-gray-400">
           <fa-icon [icon]="activityIcon"></fa-icon>
         </div>
-        <textarea class="w-full flex-grow overflow-auto pl-3 py-2 pr-2 outline-none" placeholder="Ramiro"></textarea>
+        <textarea class="w-full flex-grow overflow-auto pl-3 py-2 pr-2 resize-none outline-none" placeholder="Ramiro"></textarea>
       </div>
     </div>
 
@@ -80,7 +89,7 @@
           <div class="flex overflow-x-auto gap-2 py-2">
             <div class="min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 p-1 cursor-pointer text-gray-400 hover:cursor-pointer">
               <div class="w-full h-full border border-dashed border-gray-400 flex justify-center items-center rounded-xl">
-                <fa-icon [icon]="activityIcon"></fa-icon>
+                <fa-icon [icon]="circlePlusIcon"></fa-icon>
               </div>
             </div>
 
@@ -89,12 +98,10 @@
                 <div class="opacity-0 hover:opacity-100 transition ease-in duration-100 absolute inset-0 bg-cover bg-center z-0 bg-black bg-opacity-25 text-gray-200 w-full h-full flex justify-center items-center rounded-xl">
                   <fa-icon [icon]="trashIcon"></fa-icon>
                 </div>
-                <div class="w-full h-full flex justify-center items-center rounded-xl bg-[url('{{ urls }}')] bg-cover bg-center">
+                <div class="w-full h-full flex justify-center items-center rounded-xl bg-[url('https://cataas.com/cat')] bg-cover bg-center">
                 </div>
               </div>
             }
-
-
           </div>
         </div>
         <div>
