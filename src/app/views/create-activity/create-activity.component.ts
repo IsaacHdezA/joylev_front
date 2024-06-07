@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { ReactiveFormsModule, FormGroup, FormControl, FormsModule } from '@angular/forms';
 
 import { DatePickerComponent } from '../../components/date-picker/date-picker.component';
 import { DropdownListComponent } from '../../components/dropdown-list/dropdown-list.component';
@@ -25,9 +26,12 @@ import {
     NgClass,
     FontAwesomeModule,
 
+    FormsModule,
+    ReactiveFormsModule,
+
     DatePickerComponent,
     DropdownListComponent,
-    RatingComponent
+    RatingComponent,
   ],
   templateUrl: './create-activity.component.html',
   styleUrl: './create-activity.component.css'
@@ -66,6 +70,20 @@ export class CreateActivityComponent implements OnInit {
   ];
   urls: string[] = [];
 
+  activityForm: FormGroup = new FormGroup({
+    title:             new FormControl(""),
+    timestamp_start:   new FormControl(""),
+    timestamp_end:     new FormControl(""),
+    joy_level:         new FormControl(0),
+    achievement_level: new FormControl(0),
+    latitude:          new FormControl(0),
+    longitude:         new FormControl(0),
+    description:       new FormControl(""),
+    visibility:        new FormControl(""),
+    images:            new FormControl(new Set()),
+    emotions:          new FormControl(new Set())
+  });
+
   constructor() {
     this.startDate = new Date();
     this.endDate   = new Date();
@@ -77,8 +95,7 @@ export class CreateActivityComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.startDate);
-    console.log(this.endDate);
+    console.log(this.activityForm.value);
   }
 
   range(maxElems: number) {
@@ -86,11 +103,19 @@ export class CreateActivityComponent implements OnInit {
 
   }
 
+  selectedVisibility(visibility: string) {
+    this.activityForm.value["visibility"] = visibility;
+  }
+
   selectedEmotion(emotion: string) {
-    if(!this.emotions.has(emotion)) this.emotions.add(emotion);
+    if(!this.emotions.has(emotion)) {
+      this.emotions.add(emotion);
+      this.activityForm.value["emotions"].add(emotion);
+    }
   }
 
   deleteEmotion(emotion: string) {
     this.emotions.delete(emotion);
+    this.activityForm.value["emotions"].delete(emotion);
   }
 }

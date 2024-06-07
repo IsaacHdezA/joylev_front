@@ -1,4 +1,6 @@
 <!-- TODO: Create Esc KeyPress directive to close options when pressing -->
+<!-- TODO: Change Dynamic icons from IconDefinition to css classes
+	   TODO: Static icons should stay the same (for dynamic, I mean, icons in the items list or smt) -->
 <div
   class="container"
   clickedOutside
@@ -20,7 +22,7 @@
 				class="flex justify-center items-center w-12 h-100 text-gray-400 cursor-pointer"
 				(click)="showItems = !showItems"
 			>
-				<fa-icon [icon]="caretIcon"></fa-icon>
+				<fa-icon class="fa fa-caret-down"></fa-icon>
 			</div>
 		</div>
 		<div class="overflow-y-auto max-h-[20rem] bg-white mt-12 rounded-lg shadow absolute top-0 left-0 z-10 w-full">
