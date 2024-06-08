@@ -17,8 +17,8 @@
       <div class="col-span-4">
         <h3 class="text-xl">¿Cuándo pasó?</h3>
         <div class="flex gap-2">
-          <date-picker formControlName="timestamp_start" ngDefaultControl placeholder="Inicio de actividad"></date-picker>
-          <date-picker formControlName="timestamp_end"   ngDefaultControl placeholder="Fin de actividad"></date-picker>
+          <date-picker formControlName="timestamp_start" [(ngModel)]="activityForm.value.timestamp_start" ngDefaultControl placeholder="Inicio de actividad"></date-picker>
+          <date-picker formControlName="timestamp_end"   [(ngModel)]="activityForm.value.timestamp_end" ngDefaultControl placeholder="Fin de actividad"></date-picker>
         </div>
       </div>
 
@@ -88,18 +88,21 @@
           <div>
             <h3 class="text-xl">¿Quieres mostrar algo?</h3>
             <div class="flex overflow-x-auto gap-2 py-2">
-              <div class="min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 p-1 cursor-pointer text-gray-400 hover:cursor-pointer">
+
+              <label for="image-upload-1" class="min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 p-1 cursor-pointer text-gray-400 hover:cursor-pointer hover:bg-black hover:bg-opacity-20 transition ease-in duration-100">
                 <div class="w-full h-full border border-dashed border-gray-400 flex justify-center items-center rounded-xl">
                   <fa-icon [icon]="circlePlusIcon"></fa-icon>
                 </div>
-              </div>
+                <input id="image-upload-1" type="file" accept="image/*" (change)="selectedFile($event)">
+              </label>
 
-              @for(url of urls; track $index) {
-                <div class="relative min-w-20 min-h-20 flex justify-center items-center rounded-xl bg-gray-200 cursor-pointer text-gray-400">
+              @for(url of activityForm.value.images; track url) {
+                <div class="relative min-w-20 min-h-20 max-w-20 max-h-20 flex justify-center items-center rounded-xl bg-gray-200 cursor-pointer text-gray-400 overflow-hidden">
                   <div class="opacity-0 hover:opacity-100 transition ease-in duration-100 absolute inset-0 bg-cover bg-center z-0 bg-black bg-opacity-25 text-gray-200 w-full h-full flex justify-center items-center rounded-xl">
-                    <fa-icon [icon]="trashIcon"></fa-icon>
+                    <fa-icon [icon]="trashIcon" (click)="deleteImage(url)"></fa-icon>
                   </div>
-                  <div class="w-full h-full flex justify-center items-center rounded-xl bg-[url('https://cataas.com/cat')] bg-cover bg-center">
+                  <div class="w-full h-full flex justify-center items-center rounded-xl">
+                    <img [src]="url" alt="">
                   </div>
                 </div>
               }

@@ -72,8 +72,8 @@ export class CreateActivityComponent implements OnInit {
 
   activityForm: FormGroup = new FormGroup({
     title:             new FormControl(""),
-    timestamp_start:   new FormControl(""),
-    timestamp_end:     new FormControl(""),
+    timestamp_start:   new FormControl(new Date()),
+    timestamp_end:     new FormControl(new Date()),
     joy_level:         new FormControl(0),
     achievement_level: new FormControl(0),
     latitude:          new FormControl(0),
@@ -105,6 +105,7 @@ export class CreateActivityComponent implements OnInit {
 
   selectedVisibility(visibility: string) {
     this.activityForm.value["visibility"] = visibility;
+    console.log(this.activityForm.value.visibility);
   }
 
   selectedEmotion(emotion: string) {
@@ -114,8 +115,24 @@ export class CreateActivityComponent implements OnInit {
     }
   }
 
+  selectedFile(event: Event) {
+    const file = ((event.target as HTMLInputElement).files);
+    if(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.activityForm.value.images.add(reader.result?.toString());
+      };
+
+      reader.readAsDataURL(file[0]);
+    }
+  }
+
   deleteEmotion(emotion: string) {
     this.emotions.delete(emotion);
     this.activityForm.value["emotions"].delete(emotion);
+  }
+
+  deleteImage(url: string) {
+    this.activityForm.value.images.delete(url);
   }
 }

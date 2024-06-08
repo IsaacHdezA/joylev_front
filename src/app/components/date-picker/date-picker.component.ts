@@ -31,7 +31,7 @@ export class DatePickerComponent implements OnInit {
   @Input() placeholder: string = "";
   @Input() required: boolean = false;
 
-  @Input() ngModel!: Date;
+  @Input() ngModel: Date = new Date();
   @Output() ngModelChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   calendarIcon: IconDefinition = faCalendar;
@@ -61,6 +61,8 @@ export class DatePickerComponent implements OnInit {
     this.year = today.getFullYear();
 
     this.getNoOfDays()
+    this.parseDate(this.ngModel);
+
   }
 
   isToday(date: number) {
