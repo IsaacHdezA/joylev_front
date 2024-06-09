@@ -21,6 +21,11 @@ import {
 import { Activity } from '../../models/activity';
 import { Image } from '../../models/image';
 import { Emotion } from '../../models/emotion';
+import { HttpResponse } from '../../models/http_response';
+
+import { ActivityService } from '../../services/activity/activity.service';
+import { EmotionService } from '../../services/emotion/emotion.service';
+import { ImageService } from '../../services/image/image.service';
 
 @Component({
   selector: 'app-create-activity',
@@ -87,17 +92,20 @@ export class CreateActivityComponent implements OnInit {
     emotions:          new FormControl(new Set())
   });
 
-  constructor() {
+  constructor(
+    private activityService: ActivityService,
+    private emotionService:  EmotionService,
+    private imageService: ImageService,
+  ) {
     this.startDate = new Date();
     this.endDate   = new Date();
   }
 
   ngOnInit(): void {
     this.range((Math.random() * 20) + 1);
-    console.log(this.urls);
   }
 
-  onSubmit() {
+  async onSubmit() {
     const activity: Activity = new Activity(
       1,
       this.activityForm.value.title,
@@ -111,31 +119,40 @@ export class CreateActivityComponent implements OnInit {
       this.activityForm.value.visibility[0].toLowerCase()
     );
     
-    // TODO: Get inserted activity's id
-    const insertedId: number = 1;
-
     const images: Image[] = [];
     const emotions: Emotion[] = [];
 
-    this.activityForm.value.images.forEach((image: Blob) => {
-      images.push(new Image(
-        insertedId,
-        image.toString().slice(0, 255),
-        true
-      ));
+    let actResponse: HttpResponse<Activity> = new HttpResponse();
+
+    // TODO: Find a way to save the response in the above variable from inside the subscribe
+    this.activityService.add(activity).subscribe(response => {
+      actResponse = response;
+
+      // TODO: Get rid of the fucking typing error. Workaround: ts-ignore
+      // @ts-ignore
+      const actId: number = actResponse.data?.insertId as number;
+
+      this.activityForm.value.images.forEach((image: Blob) => {
+        this.imageService.add(
+          new Image(
+            actId,
+            image.toString().slice(0, 255),
+            true
+          )
+        );
+      });
+
+      this.activityForm.value.emotions.forEach((emotion: Blob) => {
+        this.emotionService.add(
+          new Emotion(
+            actId,
+            emotion.toString().slice(0, 255)
+          )
+        );
+      });
+
+      this.activityForm.reset();
     });
-
-    this.activityForm.value.emotions.forEach((emotion: Blob) => {
-      emotions.push(new Emotion(
-        insertedId,
-        emotion.toString().slice(0, 255)
-      ));
-    });
-
-    console.log(activity);
-    console.log(images);
-    console.log(emotions);
-
   }
 
   range(maxElems: number) {
@@ -145,7 +162,6 @@ export class CreateActivityComponent implements OnInit {
 
   selectedVisibility(visibility: string) {
     this.activityForm.patchValue({ "visibility": visibility });
-    console.log(this.activityForm.value.visibility);
   }
 
   selectedEmotion(emotion: string) {
