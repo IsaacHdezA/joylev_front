@@ -18,6 +18,9 @@ import {
   faCirclePlus,
   faXmark
 } from '@fortawesome/free-solid-svg-icons';
+import { Activity } from '../../models/activity';
+import { Image } from '../../models/image';
+import { Emotion } from '../../models/emotion';
 
 @Component({
   selector: 'app-create-activity',
@@ -95,7 +98,44 @@ export class CreateActivityComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.activityForm.value);
+    const activity: Activity = new Activity(
+      1,
+      this.activityForm.value.title,
+      this.activityForm.value.timestamp_start,
+      this.activityForm.value.timestamp_end,
+      this.activityForm.value.joy_level,
+      this.activityForm.value.achievement_level,
+      this.activityForm.value.latitude,
+      this.activityForm.value.longitude,
+      this.activityForm.value.description,
+      this.activityForm.value.visibility[0].toLowerCase()
+    );
+    
+    // TODO: Get inserted activity's id
+    const insertedId: number = 1;
+
+    const images: Image[] = [];
+    const emotions: Emotion[] = [];
+
+    this.activityForm.value.images.forEach((image: Blob) => {
+      images.push(new Image(
+        insertedId,
+        image.toString().slice(0, 255),
+        true
+      ));
+    });
+
+    this.activityForm.value.emotions.forEach((emotion: Blob) => {
+      emotions.push(new Emotion(
+        insertedId,
+        emotion.toString().slice(0, 255)
+      ));
+    });
+
+    console.log(activity);
+    console.log(images);
+    console.log(emotions);
+
   }
 
   range(maxElems: number) {
@@ -104,7 +144,7 @@ export class CreateActivityComponent implements OnInit {
   }
 
   selectedVisibility(visibility: string) {
-    this.activityForm.value["visibility"] = visibility;
+    this.activityForm.patchValue({ "visibility": visibility });
     console.log(this.activityForm.value.visibility);
   }
 

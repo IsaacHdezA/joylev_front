@@ -24,7 +24,6 @@ class Activity {
 		description:       string = "",
 		visibility:        string = "",
 		status:            boolean = false
-
 	) {
 		this.user_id           = user_id;
 		this.title             = title;
